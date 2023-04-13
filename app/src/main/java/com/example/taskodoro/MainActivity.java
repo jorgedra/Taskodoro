@@ -8,6 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     private CountDownTimer countDownTimer;
 
-    private long timeLeftInMilliseconds = 1500000; //25 minutos, debo poner aqui el valor del timer y hacer la division
+    private long timeLeftInMilliseconds = 0;
+
+    private long secondsLeftInMilliseconds = 0;
     private boolean timerRunning;
 
     @Override
@@ -27,6 +33,20 @@ public class MainActivity extends AppCompatActivity {
         txt_counter_text = (TextView) findViewById(R.id.txt_work_counter);
         button_start_work = (Button) findViewById(R.id.bt_start_work);
 
+        String pattern = "([0-5]?[0-9]):([0-5]?[0-9])"; // regex patter that gets the group of minutes and the group of seconds
+
+        Pattern r = Pattern.compile(pattern);
+
+        Matcher m = r.matcher(String.valueOf(txt_counter_text.getText())); // here I should make an ediText to make the time customizable
+
+        if (m.find()) {
+            timeLeftInMilliseconds = Long.parseLong(m.group(1)) * 60000; // with the regex we retrive the group of digits before the (:), this would be the minutes
+            secondsLeftInMilliseconds = Long.parseLong(m.group(2)) * 1000; // with the regex we retrive the group of digits after the (:), this would be the seconds
+            timeLeftInMilliseconds = timeLeftInMilliseconds + secondsLeftInMilliseconds; // adding the both we get the total time left in milliseconds that we need in coundDownTimer
+        }
+        else{
+            messageToast("Error de formato de tiempo");
+        }
         button_start_work.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,5 +100,9 @@ public class MainActivity extends AppCompatActivity {
         timeLeftText += seconds;
 
         txt_counter_text.setText(timeLeftText);
+    }
+
+    private void messageToast(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
