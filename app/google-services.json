@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "199882106720",
+    "firebase_url": "https://taskodoro-8686a-default-rtdb.firebaseio.com",
+    "project_id": "taskodoro-8686a",
+    "storage_bucket": "taskodoro-8686a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199882106720:android:bf7c942c59601714ed6005",
+        "android_client_info": {
+          "package_name": "com.example.taskodoro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199882106720-ci2u28ca5t5ipc30ld0q7cang3egmat0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWj3AymCU9TNDc3CEw9Of8DniXVbuI0Q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199882106720-ci2u28ca5t5ipc30ld0q7cang3egmat0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

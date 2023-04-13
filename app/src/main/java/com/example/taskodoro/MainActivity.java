@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
         txt_counter_text = (TextView) findViewById(R.id.txt_work_counter);
         button_start_work = (Button) findViewById(R.id.bt_start_work);
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
 
         String pattern = "([0-5]?[0-9]):([0-5]?[0-9])"; // regex patter that gets the group of minutes and the group of seconds
 
