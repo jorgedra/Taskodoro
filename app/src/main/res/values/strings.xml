@@ -4,4 +4,12 @@
     <string name="work_button_text">work</string>
     <string name="set_time_button_text">SET</string>
     <string name="edt_custom_time_hint">Time</string>
+    <string name="title">TASKODORO</string>
+    <string name="taskodoro_logo">TASKODORO LOGO</string>
+    <string name="edt_email_hint">Insert email</string>
+    <string name="edt_password_hint">Insert password</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
 </resources>
