@@ -17,14 +17,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
-    FirebaseDatabase database;
-
     private FirebaseAuth mAuth;
-
     private FirebaseUser currentUser;
 
     private EditText edt_email;
@@ -88,55 +86,44 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
     public void loginUser(String email, String password) {
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(LoginActivity.this, "logueado correctamente", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this, "error al loguearse", Toast.LENGTH_SHORT).show();
-                            // updateUI(null);
-                        }
-                    }
-                });
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Toast.makeText(LoginActivity.this, "logueado correctamente", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    //updateUI(user);
+                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(LoginActivity.this, "error al loguearse", Toast.LENGTH_SHORT).show();
+                    // updateUI(null);
+                }
+            }
+        });
     }
 
     public void signUpUser(String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(LoginActivity.this, "usuario registrado correctamente", Toast.LENGTH_SHORT).show();
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Toast.makeText(LoginActivity.this, "usuario registrado correctamente", Toast.LENGTH_SHORT).show();
 //                            // updateUI(user);
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this, "no se pudo registrar al usuario", Toast.LENGTH_SHORT).show();
-                            //  updateUI(null);
-                        }
-                    }
+                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(LoginActivity.this, "no se pudo registrar al usuario", Toast.LENGTH_SHORT).show();
+                    //  updateUI(null);
+                }
+            }
 
-                });
+        });
     }
-
-
-    // se cierra la sesion del usuario, esto lo añadire en la sigueinte activity
-
-//    public void cerrarUsuario(View view) {
-//        FirebaseAuth.getInstance().signOut();
-//        Toast.makeText(LoginActivity.this, "se cerró la sesión correctamente", Toast.LENGTH_SHORT).show();
-//    }
 
 }
