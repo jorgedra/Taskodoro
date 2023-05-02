@@ -11,7 +11,9 @@
         android:id="@+id/txt_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="98dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/alata"
         android:text="MENU"
         android:textColor="@color/text_work"
@@ -21,12 +23,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bt_start_sesion"
+        android:id="@+id/bt_create_sesion"
         android:layout_width="153dp"
         android:layout_height="66dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/buttons"
-        android:text="Start sesion"
+        android:text="Create sesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_menu" />
@@ -35,20 +39,24 @@
         android:id="@+id/bt_show_log"
         android:layout_width="156dp"
         android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/teal_700"
         android:text="Sesion logs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_create_sesion"
+        app:layout_constraintVertical_bias="0.092" />
 
     <Button
         android:id="@+id/bt_log_out"
         android:layout_width="159dp"
         android:layout_height="62dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="92dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#F63B3B"
         android:text="Log out"
         app:layout_constraintEnd_toEndOf="parent"

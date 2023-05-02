@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Taskodoro"
         tools:targetApi="31">
         <activity
+            android:name=".AddSesionActivity"
+            android:exported="false" />
+        <activity
             android:name=".MenuActivity"
             android:exported="false" />
         <activity

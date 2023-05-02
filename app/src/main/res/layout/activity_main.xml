@@ -11,8 +11,9 @@
         android:id="@+id/txt_work_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="428dp"
         android:text="@string/work_counter_time"
         android:textColor="@color/text_work"
@@ -20,13 +21,16 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_custom_time" />
 
     <Button
         android:id="@+id/bt_start_work"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="52dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/buttons"
         android:text="@string/work_button_text"
         android:textColor="#FFFFFF"
@@ -39,8 +43,9 @@
         android:id="@+id/edt_custom_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/edt_custom_time_hint"
         android:inputType="time"
@@ -48,6 +53,8 @@
         android:minHeight="48dp"
         android:textColor="@color/text_work"
         android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/bt_set_time"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,10 +62,12 @@
         android:id="@+id/bt_set_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="284dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/buttons"
         android:text="@string/set_time_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.885"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

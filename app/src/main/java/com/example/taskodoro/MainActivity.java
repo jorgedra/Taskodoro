@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         button_set_time = (Button) findViewById(R.id.bt_set_time);
         editText_custom_time = (EditText) findViewById(R.id.edt_custom_time);
 
-        String pattern = "([0-5]?[0-9]):([0-5]?[0-9])"; // regex patter that gets the group of minutes and the group of seconds
+        String pattern = "([0-5][0-9]):([0-5][0-9])"; // regex patter that gets the group of minutes and the group of seconds
 
         Pattern r = Pattern.compile(pattern);
 

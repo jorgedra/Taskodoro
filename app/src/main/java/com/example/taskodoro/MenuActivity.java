@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,7 +21,7 @@ public class MenuActivity extends AppCompatActivity {
     private DatabaseReference myRefUsers;
     private Button bt_log_out;
 
-    private  Button bt_start_sesion;
+    private  Button bt_create_sesion;
 
     private Button bt_show_log;
 
@@ -33,11 +32,10 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         bt_log_out = (Button) findViewById(R.id.bt_log_out);
-        bt_start_sesion = (Button) findViewById(R.id.bt_start_sesion);
+        bt_create_sesion = (Button) findViewById(R.id.bt_create_sesion);
         bt_show_log = (Button) findViewById(R.id.bt_show_log);
 
-        database = FirebaseDatabase.getInstance();
-        myRefUsers = database.getReference();
+
 
 
         bt_log_out.setOnClickListener(new View.OnClickListener() {
@@ -47,21 +45,13 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        bt_start_sesion.setOnClickListener(new View.OnClickListener() {
+        bt_create_sesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addSesionToDatabse();
-                Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+                Intent intent = new Intent(MenuActivity.this, AddSesionActivity.class);
                 startActivity(intent);
             }
         });
-    }
-
-
-    private void addSesionToDatabse() {
-        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        myRefUsers.child("sesions").child(currentUser).setValue("hola");
     }
 
     public void logOutuser() {
