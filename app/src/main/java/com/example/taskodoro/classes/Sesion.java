@@ -1,15 +1,24 @@
 package com.example.taskodoro.classes;
 
+import java.util.List;
+import java.util.Map;
+
 public class Sesion {
 
     private String sesionName;
-    private Task task;
+    private Map<String,Task> tasks;
     private int timeSpend;
 
-    public Sesion(String sesionName, Task task, int timeSpend) {
+    public Sesion(String sesionName, Map<String, Task> tasks, int timeSpend) {
         this.sesionName = sesionName;
-        this.task = task;
+        this.tasks = tasks;
         this.timeSpend = timeSpend;
+    }
+
+    public Sesion(String sesionName, Map<String, Task> tasks) {
+        this.sesionName = sesionName;
+        this.tasks = tasks;
+        this.timeSpend = 0;
     }
 
     public String getSesionName() {
@@ -20,12 +29,12 @@ public class Sesion {
         this.sesionName = sesionName;
     }
 
-    public Task getTask() {
-        return task;
+    public Map<String, Task> getTasks() {
+        return tasks;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public void setTasks(Map<String, Task> tasks) {
+        this.tasks = tasks;
     }
 
     public int getTimeSpend() {
