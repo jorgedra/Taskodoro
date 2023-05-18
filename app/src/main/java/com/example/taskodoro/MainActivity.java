@@ -15,7 +15,10 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
+import android.os.VibrationEffect;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     private NotificationManager notificationManager;
 
+    private Vibrator vibrator;
     private TextView txt_counter_text;
     private Button button_start_work;
     private Button button_set_time;
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private long timeLeftInMilliseconds = 0;
 
     private long secondsLeftInMilliseconds = 0;
+
+    private long[] vibrationPattern = {500,550,500,550};
     private boolean timerRunning;
 
     private String custom_time;
@@ -64,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
         button_start_work = (Button) findViewById(R.id.bt_start_work);
         button_set_time = (Button) findViewById(R.id.bt_set_time);
         editText_custom_time = (EditText) findViewById(R.id.edt_custom_time);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.cancelAll(); //cancel all the notifications that could be already there
+
 
         //regex for time input
         String pattern = "([0-5][0-9]):([0-5][0-9])"; // regex patter that gets the group of minutes and the group of seconds
@@ -109,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             editText_custom_time.setVisibility(View.VISIBLE);
         } else {
             startTimer();
-            button_set_time.setVisibility(View.INVISIBLE);
+            button_set_time.setVisibility(View.INVISIBLE);// has to change into another button that cancel the timer
             editText_custom_time.setVisibility(View.INVISIBLE);
         }
     }
@@ -130,7 +138,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                    showNotification();
+                vibrator.vibrate(VibrationEffect.createWaveform(vibrationPattern, 0));
+                showNotification();
+
             }
         }.start();
 
@@ -184,6 +194,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void messageToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        vibrator.cancel();
+        return super.dispatchTouchEvent(ev);
     }
 
 }
