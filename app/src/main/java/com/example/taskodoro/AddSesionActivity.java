@@ -96,7 +96,7 @@ public class AddSesionActivity extends AppCompatActivity {
     private void addSesionToDatabse(String sesionName) {
         String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Sesion newSesion = new Sesion(sesionName,taskMap);
-        myRef.child("sesions").child(currentUser).child("Sesion" + newSesion.getSesionName()).setValue(newSesion);
+        myRef.child("sesions").child(currentUser).child("Sesion " + newSesion.getSesionName()).setValue(newSesion);
 
         Intent intent = new Intent(AddSesionActivity.this, MainActivity.class);
         startActivity(intent);

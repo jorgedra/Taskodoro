@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,10 +10,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="304dp"
+        android:layout_marginEnd="161dp"
+        android:capitalize="none"
         android:fontFamily="@font/alata"
         android:gravity="center_vertical"
-        android:text="TaskName" />
+        android:inputType="textCapSentences"
+        android:text="TaskName"
+        android:textSize="24sp" />
 
     <CheckBox
         android:id="@+id/cb_task_status"
@@ -20,8 +24,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="34dp"
+        android:checked="false"
+        android:clickable="false"
         android:fontFamily="@font/alata"
-        android:gravity="center_vertical" />
+        android:gravity="center_vertical"
+        app:checkedState="unchecked" />
+
+    <TextView
+        android:id="@+id/txt_status_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/alata"
+        android:text="Status" />
 </RelativeLayout>
