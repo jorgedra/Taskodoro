@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     private long secondsLeftInMilliseconds = 0;
 
-    private long[] vibrationPattern = {500,550,500,550};
+    private long[] vibrationPattern = {500, 550, 500, 550};
     private boolean timerRunning;
 
     private String custom_time;
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.cancelAll(); //cancel all the notifications that could be already there
-
 
         //regex for time input
         String pattern = "([0-5][0-9]):([0-5][0-9])"; // regex patter that gets the group of minutes and the group of seconds
@@ -95,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
                     timeLeftInMilliseconds = Long.parseLong(m.group(1)) * 60000; // with the regex we retrive the group of digits before the (:), this would be the minutes
                     secondsLeftInMilliseconds = Long.parseLong(m.group(2)) * 1000; // with the regex we retrive the group of digits after the (:), this would be the seconds
                     timeLeftInMilliseconds = timeLeftInMilliseconds + secondsLeftInMilliseconds; // adding the both we get the total time left in milliseconds that we need in coundDownTimer
-                    messageToast("Cambiado el tiempo del contador");
+                    messageToast("Timer value changed");
                 } else {
-                    editText_custom_time.setError("El formato debe ser: (xx:xx) ");
+                    editText_custom_time.setError("Format has to be: (xx:xx) ");
                 }
             }
         });
@@ -108,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 startStop();
             }
         });
+
     }
 
     public void startStop() {
