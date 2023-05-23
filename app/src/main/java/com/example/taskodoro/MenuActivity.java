@@ -36,12 +36,11 @@ public class MenuActivity extends AppCompatActivity {
         bt_show_log = (Button) findViewById(R.id.bt_show_log);
 
 
-
-
-        bt_log_out.setOnClickListener(new View.OnClickListener() {
+        bt_show_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logOutuser();
+                Intent intent = new Intent(MenuActivity.this, ShowLogActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -52,6 +51,14 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        bt_log_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logOutuser();
+            }
+        });
+
     }
 
     public void logOutuser() {

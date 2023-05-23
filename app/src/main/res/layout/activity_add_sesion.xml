@@ -83,25 +83,31 @@
         android:id="@+id/bt_add_task"
         android:layout_width="55dp"
         android:layout_height="53dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="false"
         android:clickable="true"
         android:contentDescription="add task button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/edt_task_name"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42"
+        app:layout_constraintVertical_bias="0.371"
         app:srcCompat="@drawable/add" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_task"
-        android:layout_width="363dp"
-        android:layout_height="132dp"
+        android:layout_width="376dp"
+        android:layout_height="206dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/bt_start_sesion"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_add_task" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_task_name"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

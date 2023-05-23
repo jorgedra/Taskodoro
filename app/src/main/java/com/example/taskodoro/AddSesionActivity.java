@@ -1,5 +1,6 @@
 package com.example.taskodoro;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +18,11 @@ import com.example.taskodoro.classes.Task;
 import com.example.taskodoro.recycler_view.Task_adapater;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +37,8 @@ public class AddSesionActivity extends AppCompatActivity {
 
     private DatabaseReference myRef;
 
+    private Task_adapater taskAdapter;
+
     private Button bt_start_sesion;
 
     private EditText edt_task_name;
@@ -45,6 +52,8 @@ public class AddSesionActivity extends AppCompatActivity {
 
     private List<Task> tasks = new ArrayList<Task>();
 
+    private String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,20 +66,23 @@ public class AddSesionActivity extends AppCompatActivity {
         rv_task = (RecyclerView) findViewById(R.id.rv_task);
 
         rv_task.setLayoutManager(new LinearLayoutManager(this));
-        rv_task.setAdapter(new Task_adapater(getApplicationContext(),tasks));
-
+        taskAdapter = new Task_adapater(getApplicationContext(),tasks);
+        rv_task.setAdapter(taskAdapter);
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
 
+        List<String> usedNames =  getSesionsName(currentUser);
         bt_start_sesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println(usedNames);
                 String sesionName = String.valueOf(edt_sesion_name.getText());
                 if(TextUtils.isEmpty(sesionName)){
-                    edt_sesion_name.setError("La sesion debe de tener nombre");
-                }
-                else{
+                    edt_sesion_name.setError("Sesion name can't be empty");
+                } else if (usedNames.contains(sesionName)) {
+                    edt_sesion_name.setError("Sesion name already exists");
+                } else{
                     addSesionToDatabse(sesionName);
                 }
             }
@@ -81,12 +93,13 @@ public class AddSesionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String taskName = String.valueOf(edt_task_name.getText());
                 if(TextUtils.isEmpty(taskName)){
-                    edt_task_name.setError("La tarea debe de tener nombre");
+                    edt_task_name.setError("Task name can't be empty");
                 }
                 else{
                     Task newTask = createTask(taskName);
                     taskMap.put(newTask.getTaskName(), newTask);
                     tasks.add(newTask);
+                    taskAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -94,7 +107,6 @@ public class AddSesionActivity extends AppCompatActivity {
 
 
     private void addSesionToDatabse(String sesionName) {
-        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Sesion newSesion = new Sesion(sesionName,taskMap);
         myRef.child("sesions").child(currentUser).child("Sesion " + newSesion.getSesionName()).setValue(newSesion);
 
@@ -104,5 +116,26 @@ public class AddSesionActivity extends AppCompatActivity {
 
     private Task createTask(String taskName){
         return new Task(taskName,false);
+    }
+
+    private List<String> getSesionsName(String currentUser){
+        List<String> sesionsNames = new ArrayList<String>();
+        myRef.child("sesions").child(currentUser).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for(DataSnapshot ds: snapshot.getChildren()){
+                        String sesionName = ds.child("sesionName").getValue().toString();
+                        sesionsNames.add(sesionName);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return sesionsNames;
     }
 }

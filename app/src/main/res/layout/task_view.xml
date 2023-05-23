@@ -2,25 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#A9EF95">
 
     <TextView
         android:id="@+id/txt_task_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="278dp"
+        android:layout_height="70dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="161dp"
-        android:capitalize="none"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="22dp"
+        android:layout_toEndOf="@+id/cb_task_status"
+        android:autoText="false"
+        android:capitalize="words"
         android:fontFamily="@font/alata"
         android:gravity="center_vertical"
-        android:inputType="textCapSentences"
         android:text="TaskName"
+        android:textColor="#000000"
         android:textSize="24sp" />
 
     <CheckBox
         android:id="@+id/cb_task_status"
-        android:layout_width="wrap_content"
+        android:layout_width="73dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -30,6 +34,7 @@
         android:clickable="false"
         android:fontFamily="@font/alata"
         android:gravity="center_vertical"
+        android:textColor="@color/black"
         app:checkedState="unchecked" />
 
     <TextView
@@ -38,8 +43,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="6dp"
         android:fontFamily="@font/alata"
-        android:text="Status" />
+        android:text="Status"
+        android:textColor="@color/black" />
 </RelativeLayout>
