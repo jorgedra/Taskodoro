@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#8DA9EF95">
+
+    <TextView
+        android:id="@+id/txt_view_sesion_name"
+        android:layout_width="206dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="150dp"
+        android:fontFamily="@font/alata"
+        android:gravity="center_vertical"
+        android:text="SesionName"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/txt_view_time_spent"
+        android:layout_width="206dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_view_sesion_name"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="149dp"
+        android:fontFamily="@font/alata"
+        android:gravity="center_vertical"
+        android:text="TimeSpent"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        tools:ignore="TouchTargetSizeCheck" />
+
+</RelativeLayout>

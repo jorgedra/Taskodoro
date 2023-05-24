@@ -13,12 +13,12 @@ import com.example.taskodoro.classes.Task;
 
 import java.util.List;
 
-public class Task_adapater extends RecyclerView.Adapter<TaskViewHolder> {
+public class TaskAdapater extends RecyclerView.Adapter<TaskViewHolder> {
 
     Context context;
     List<Task> tasks;
 
-    public Task_adapater(Context context, List<Task> tasks) {
+    public TaskAdapater(Context context, List<Task> tasks) {
         this.context = context;
         this.tasks = tasks;
     }

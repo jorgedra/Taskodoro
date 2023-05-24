@@ -21,6 +21,11 @@ public class Sesion {
         this.timeSpend = 0;
     }
 
+    public Sesion(String sesionName, Long timeSpend) {
+        this.sesionName = sesionName;
+        this.timeSpend = timeSpend;
+    }
+
     public String getSesionName() {
         return sesionName;
     }
@@ -41,7 +46,7 @@ public class Sesion {
         return timeSpend;
     }
 
-    public void setTimeSpend(int timeSpend) {
+    public void setTimeSpend(long timeSpend) {
         this.timeSpend = timeSpend;
     }
 }

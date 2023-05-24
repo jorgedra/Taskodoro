@@ -8,14 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.taskodoro.classes.Sesion;
 import com.example.taskodoro.classes.Task;
-import com.example.taskodoro.recycler_view.Task_adapater;
+import com.example.taskodoro.recycler_view.TaskAdapater;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -37,7 +36,7 @@ public class AddSesionActivity extends AppCompatActivity {
 
     private DatabaseReference myRef;
 
-    private Task_adapater taskAdapter;
+    private TaskAdapater taskAdapter;
 
     private Button bt_start_sesion;
 
@@ -66,7 +65,7 @@ public class AddSesionActivity extends AppCompatActivity {
         rv_task = (RecyclerView) findViewById(R.id.rv_task);
 
         rv_task.setLayoutManager(new LinearLayoutManager(this));
-        taskAdapter = new Task_adapater(getApplicationContext(),tasks);
+        taskAdapter = new TaskAdapater(getApplicationContext(),tasks);
         rv_task.setAdapter(taskAdapter);
 
         database = FirebaseDatabase.getInstance();

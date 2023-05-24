@@ -2,14 +2,16 @@ package com.example.taskodoro;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 
 import com.example.taskodoro.classes.Sesion;
 import com.example.taskodoro.classes.Task;
-import com.example.taskodoro.recycler_view.Task_adapater;
+import com.example.taskodoro.recycler_view.SesionAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,11 +29,13 @@ public class ShowLogActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
 
+    private SesionAdapter sesionAdapter;
+
     private DatabaseReference myRef;
 
     private RecyclerView rv_sesions = null;
 
-    private List<Sesion> sesions = new ArrayList<Sesion>();
+    private ArrayList<Sesion> sesions = new ArrayList<Sesion>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +44,31 @@ public class ShowLogActivity extends AppCompatActivity {
 
         rv_sesions = (RecyclerView) findViewById(R.id.rv_sesions);
 
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference();
         String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        rv_sesions.setLayoutManager(new LinearLayoutManager(this));
-//        rv_sesions.setAdapter(new Sesion_adapter(getApplicationContext(),sesions));// for rv, need to take data from firebase, look the video on tfg bookmark
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        rv_sesions.setLayoutManager(layoutManager);
+        getSesionsFromDatabase(currentUser);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rv_sesions.getContext(),
+                ((LinearLayoutManager) layoutManager).getOrientation());
+        rv_sesions.addItemDecoration(dividerItemDecoration);
     }
 
-    private void getSesionsFor(String currentUser){
+    private void getSesionsFromDatabase(String currentUser){
         myRef.child("sesions").child(currentUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot ds: snapshot.getChildren()){
-                       String sesionName = ds.child("sesionName").getValue().toString();
-                       Long timeSpend = Long.valueOf(ds.child("timeSpend").getValue().toString());
-                       Map<String, Task> tasks = (Map<String, Task>) ds.child("tasks").getValue();
-                       sesions.add(new Sesion(sesionName, tasks, timeSpend));
+                if(snapshot.exists()) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        String sesionName = ds.child("sesionName").getValue().toString();
+                        Long timeSpend = Long.valueOf(ds.child("timeSpend").getValue().toString());
+                        sesions.add(new Sesion(sesionName, timeSpend));
                     }
+                    sesionAdapter = new SesionAdapter(sesions, R.layout.sesion_view);
+                    rv_sesions.setAdapter(sesionAdapter);
                 }
             }
 
