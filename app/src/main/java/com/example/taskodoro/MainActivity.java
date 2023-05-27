@@ -74,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.cancelAll(); //cancel all the notifications that could be already there
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String sesionName = extras.getString("sesionName");
+            Log.i("sesion",sesionName);
+        }
+
         //regex for time input
         String pattern = "([0-5][0-9]):([0-5][0-9])"; // regex patter that gets the group of minutes and the group of seconds
         Pattern r = Pattern.compile(pattern);
@@ -93,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     txt_counter_text.setText(custom_time);
                     timeLeftInMilliseconds = Long.parseLong(m.group(1)) * 60000; // with the regex we retrive the group of digits before the (:), this would be the minutes
                     secondsLeftInMilliseconds = Long.parseLong(m.group(2)) * 1000; // with the regex we retrive the group of digits after the (:), this would be the seconds
-                    timeLeftInMilliseconds = timeLeftInMilliseconds + secondsLeftInMilliseconds; // adding the both we get the total time left in milliseconds that we need in coundDownTimer
+                    timeLeftInMilliseconds = timeLeftInMilliseconds + secondsLeftInMilliseconds; // adding both we get the total time left in milliseconds that we need in coundDownTimer
                     messageToast("Timer value changed");
                 } else {
                     editText_custom_time.setError("Format has to be: (xx:xx) ");

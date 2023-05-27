@@ -110,6 +110,7 @@ public class AddSesionActivity extends AppCompatActivity {
         myRef.child("sesions").child(currentUser).child("Sesion " + newSesion.getSesionName()).setValue(newSesion);
 
         Intent intent = new Intent(AddSesionActivity.this, MainActivity.class);
+        intent.putExtra("sesionName", "Sesion " + newSesion.getSesionName());
         startActivity(intent);
     }
 
