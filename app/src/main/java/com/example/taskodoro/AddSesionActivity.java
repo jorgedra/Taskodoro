@@ -99,6 +99,7 @@ public class AddSesionActivity extends AppCompatActivity {
                     taskMap.put(newTask.getTaskName(), newTask);
                     tasks.add(newTask);
                     taskAdapter.notifyDataSetChanged();
+                    edt_task_name.setText("");
                 }
             }
         });
