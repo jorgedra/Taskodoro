@@ -6,14 +6,14 @@
     android:background="#8DA9EF95">
 
     <TextView
-        android:id="@+id/txt_task_name"
+        android:id="@+id/txt_main_task_name"
         android:layout_width="278dp"
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="33dp"
         android:layout_marginEnd="22dp"
-        android:layout_toEndOf="@+id/cb_task_status"
+        android:layout_toEndOf="@+id/cb_main_task_status"
         android:fontFamily="@font/alata"
         android:gravity="center_vertical"
         android:text="TaskName"
@@ -21,7 +21,7 @@
         android:textSize="24sp" />
 
     <CheckBox
-        android:id="@+id/cb_task_status"
+        android:id="@+id/cb_main_task_status"
         android:layout_width="73dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -29,14 +29,13 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="34dp"
         android:checked="false"
-        android:clickable="false"
         android:fontFamily="@font/alata"
         android:gravity="center_vertical"
         android:textColor="@color/black"
         app:checkedState="unchecked" />
 
     <TextView
-        android:id="@+id/txt_status_title"
+        android:id="@+id/txt_main_status_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"

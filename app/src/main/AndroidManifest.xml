@@ -12,7 +12,6 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/logo_taskodoro"
-        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Taskodoro"
         tools:targetApi="31">

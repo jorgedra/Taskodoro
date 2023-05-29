@@ -32,6 +32,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/buttons"
+        android:fontFamily="@font/alata"
         android:text="@string/work_button_text"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,7 @@
         android:layout_width="165dp"
         android:layout_height="51dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="148dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:fontFamily="@font/alata"
@@ -55,7 +56,7 @@
         android:textColor="@color/text_work"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/bt_set_time"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.865"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,24 +64,38 @@
         android:id="@+id/bt_set_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="148dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/buttons"
+        android:fontFamily="@font/alata"
         android:text="@string/set_time_button_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintHorizontal_bias="0.826"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_task_list"
-        android:layout_width="386dp"
+        android:layout_width="414dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_start_work"
-        app:layout_constraintVertical_bias="0.994" />
+        app:layout_constraintVertical_bias="0.818" />
+
+    <TextView
+        android:id="@+id/txt_sesion_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/alata"
+        android:text="SesionName"
+        android:textColor="@color/text_work"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,6 +33,7 @@ import com.example.taskodoro.classes.Sesion;
 import com.example.taskodoro.classes.Task;
 import com.example.taskodoro.recycler_view.SesionAdapter;
 import com.example.taskodoro.recycler_view.TaskAdapater;
+import com.example.taskodoro.recycler_view.TaskMainAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -56,8 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
 
-    private TaskAdapater taskAdapter;
-
+    private TaskMainAdapter taskMainAdapter;
 
     private PendingIntent pendingIntent;
 
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Vibrator vibrator;
     private TextView txt_counter_text;
+
+    private TextView txt_sesion_title;
     private Button button_start_work;
     private Button button_set_time;
 
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String custom_time;
 
-    private List<Task> tasksList = new ArrayList<>();
+    private ArrayList<Task> tasksList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         button_start_work = (Button) findViewById(R.id.bt_start_work);
         button_set_time = (Button) findViewById(R.id.bt_set_time);
         editText_custom_time = (EditText) findViewById(R.id.edt_custom_time);
+        txt_sesion_title = (TextView) findViewById(R.id.txt_sesion_title);
         rv_task_list = (RecyclerView) findViewById(R.id.rv_task_list);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String sesionName = extras.getString("sesionName");
+            txt_sesion_title.setText(sesionName);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             rv_task_list.setLayoutManager(layoutManager);
 
@@ -254,8 +258,8 @@ public class MainActivity extends AppCompatActivity {
                         Boolean taskStatus = (Boolean) ds.child("taskStatus").getValue();
                         tasksList.add(new Task(taskName, taskStatus));
                     }
-                    taskAdapter = new TaskAdapater(getApplicationContext(), tasksList);
-                    rv_task_list.setAdapter(taskAdapter);
+                    taskMainAdapter = new TaskMainAdapter(R.layout.task_main_view, tasksList);
+                    rv_task_list.setAdapter(taskMainAdapter);
                 }
             }
 
