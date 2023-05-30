@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.gesture.GestureOverlayView;
 import android.os.Bundle;
+import android.view.Window;
 
 import com.example.taskodoro.classes.Sesion;
 import com.example.taskodoro.classes.Task;
@@ -40,6 +41,8 @@ public class ShowLogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_show_log);
 
         rv_sesions = (RecyclerView) findViewById(R.id.rv_sesions);

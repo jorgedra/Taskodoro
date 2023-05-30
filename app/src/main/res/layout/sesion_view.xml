@@ -14,8 +14,8 @@
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="150dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="72dp"
         android:fontFamily="@font/alata"
         android:gravity="center_vertical"
         android:text="SesionName"
@@ -30,13 +30,40 @@
         android:layout_below="@+id/txt_view_sesion_name"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="149dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="6dp"
         android:fontFamily="@font/alata"
         android:gravity="center_vertical"
         android:text="TimeSpent"
         android:textColor="#000000"
         android:textSize="24sp"
         tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/txt_time_spent_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="51dp"
+        android:fontFamily="@font/alata"
+        android:text="Time Spent:"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/txt_sesion_name_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="13dp"
+        android:fontFamily="@font/alata"
+        android:text="Sesion:"
+        android:textColor="#000000"
+        android:textSize="24sp" />
 
 </RelativeLayout>
