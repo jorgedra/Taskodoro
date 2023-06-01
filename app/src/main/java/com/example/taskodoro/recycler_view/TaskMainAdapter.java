@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,7 +34,6 @@ public class TaskMainAdapter extends RecyclerView.Adapter<TaskMainAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(resource, parent, false);
-
         return new TaskMainAdapter.ViewHolder(view);
     }
 
@@ -46,12 +44,6 @@ public class TaskMainAdapter extends RecyclerView.Adapter<TaskMainAdapter.ViewHo
         Task task = tasks.get(position);
         holder.txt_main_task_name.setText(task.getTaskName());
         holder.cb_main_task_status.setChecked(task.getTaskStatus());
-        holder.cb_main_task_status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                myRef.child("sesions").child(currentUser).child(sesionName).child("tasks").child(task.getTaskName()).child("taskStatus").setValue(b);
-            }
-        });
     }
 
     @Override

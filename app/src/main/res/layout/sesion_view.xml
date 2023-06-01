@@ -8,13 +8,13 @@
 
     <TextView
         android:id="@+id/txt_view_sesion_name"
-        android:layout_width="206dp"
+        android:layout_width="269dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="43dp"
         android:layout_marginTop="13dp"
-        android:layout_marginEnd="72dp"
+        android:layout_marginEnd="9dp"
         android:layout_toEndOf="@+id/txt_sesion_name_title"
         android:fontFamily="@font/alata"
         android:gravity="center_vertical"
