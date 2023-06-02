@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.os.VibrationEffect;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -27,9 +28,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.LongStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,6 +74,21 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Task> tasksList = new ArrayList<>();
 
+    private ArrayList<Long> minutesSpentArray = new ArrayList<>();
+
+    private ArrayList<Long> secondsSpentArray = new ArrayList<>();
+
+    private Instant instantStart;
+
+    private Instant instantEnd;
+
+    private Long timeSpent;
+
+    private String currentUser;
+
+    private String sesionName;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
         if (extras != null) {
             database = FirebaseDatabase.getInstance();
             myRef = database.getReference();
-            String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            String sesionName = extras.getString("sesionName");
+            currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            sesionName = extras.getString("sesionName");
 
             txt_sesion_title.setText(sesionName);
 
@@ -139,10 +163,16 @@ public class MainActivity extends AppCompatActivity {
     public void startStop() {
         if (timerRunning) {
             stopTimer();
-            button_set_time.setVisibility(View.VISIBLE);
-            editText_custom_time.setVisibility(View.VISIBLE);
+            instantEnd = Instant.now();
+            long timeElapsed = Duration.between(instantStart, instantEnd).toMillis();
+            long minutes = TimeUnit.MILLISECONDS.toMinutes(timeElapsed);
+            timeElapsed -= TimeUnit.MINUTES.toMillis(minutes);
+            long seconds = TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
+            minutesSpentArray.add(minutes);
+            secondsSpentArray.add(seconds);
         } else {
             startTimer();
+            instantStart = Instant.now();
             button_set_time.setVisibility(View.INVISIBLE);// has to change into another button that cancel the timer
             editText_custom_time.setVisibility(View.INVISIBLE);
         }
@@ -165,7 +195,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 vibrator.vibrate(VibrationEffect.createWaveform(vibrationPattern, 0));
-
+                instantEnd = Instant.now();
+                long timeElapsed = Duration.between(instantStart, instantEnd).toMillis();
+                long minutes = TimeUnit.MILLISECONDS.toMinutes(timeElapsed);
+                timeElapsed -= TimeUnit.MINUTES.toMillis(minutes);
+                long seconds = TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
+                minutesSpentArray.add(minutes);
+                secondsSpentArray.add(seconds);
             }
         }.start();
 
@@ -219,4 +255,19 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        long totalMinutesTimeSpent = 0;
+        long totalSecondsTimeSpent = 0;
+        for (long minutesTimeValue : minutesSpentArray) {
+            totalMinutesTimeSpent += minutesTimeValue;
+        }
+        for (long secondsTimeValue : secondsSpentArray) {
+            totalSecondsTimeSpent += secondsTimeValue;
+        }
+        String timeSpentToString = String.format("%02d:%02d", totalMinutesTimeSpent, totalSecondsTimeSpent);
+//        String timeSpentToString = String.valueOf(totalMinutesTimeSpent + ":" + totalSecondsTimeSpent);
+        myRef.child("sesions").child(currentUser).child(sesionName).child("timeSpend").setValue(timeSpentToString);
+    }
 }

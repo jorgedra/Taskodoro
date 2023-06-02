@@ -67,7 +67,7 @@ public class ShowLogActivity extends AppCompatActivity {
                 if(snapshot.exists()) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
                         String sesionName = ds.child("sesionName").getValue().toString();
-                        Long timeSpend = Long.valueOf(ds.child("timeSpend").getValue().toString());
+                        String timeSpend = ds.child("timeSpend").getValue().toString();
                         sesions.add(new Sesion(sesionName, timeSpend));
                     }
                     sesionAdapter = new SesionAdapter(sesions, R.layout.sesion_view);

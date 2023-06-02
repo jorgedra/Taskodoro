@@ -7,9 +7,9 @@ public class Sesion {
 
     private String sesionName;
     private Map<String,Task> tasks;
-    private long timeSpend;
+    private String timeSpend;
 
-    public Sesion(String sesionName, Map<String, Task> tasks, long timeSpend) {
+    public Sesion(String sesionName, Map<String, Task> tasks, String timeSpend) {
         this.sesionName = sesionName;
         this.tasks = tasks;
         this.timeSpend = timeSpend;
@@ -18,10 +18,10 @@ public class Sesion {
     public Sesion(String sesionName, Map<String, Task> tasks) {
         this.sesionName = sesionName;
         this.tasks = tasks;
-        this.timeSpend = 0;
+        this.timeSpend = "";
     }
 
-    public Sesion(String sesionName, Long timeSpend) {
+    public Sesion(String sesionName, String timeSpend) {
         this.sesionName = sesionName;
         this.timeSpend = timeSpend;
     }
@@ -42,11 +42,11 @@ public class Sesion {
         this.tasks = tasks;
     }
 
-    public long getTimeSpend() {
+    public String getTimeSpend() {
         return timeSpend;
     }
 
-    public void setTimeSpend(long timeSpend) {
+    public void setTimeSpend(String timeSpend) {
         this.timeSpend = timeSpend;
     }
 }
