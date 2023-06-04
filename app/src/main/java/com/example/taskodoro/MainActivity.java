@@ -42,7 +42,13 @@ import java.util.stream.LongStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String DEFAULT_TIME = "25:00";
+    private final String DEFAULT_WORK_TIME = "25:00";
+
+    private final String DEFAULT_BREAK_TIME = "05:00";
+
+    private String pattern = "([0-5][0-9]):([0-5][0-9])";// regex patter that gets the group of minutes and the group of seconds
+
+    private Pattern r = Pattern.compile(pattern);
 
     private DatabaseReference myRef;
 
@@ -88,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String sesionName;
 
+    boolean isABreak = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,15 +130,10 @@ public class MainActivity extends AppCompatActivity {
                     ((LinearLayoutManager) layoutManager).getOrientation());
             rv_task_list.addItemDecoration(dividerItemDecoration);
 
-
-
-            //regex for time input
-            String pattern = "([0-5][0-9]):([0-5][0-9])"; // regex patter that gets the group of minutes and the group of seconds
-            Pattern r = Pattern.compile(pattern);
-            Matcher m = r.matcher(DEFAULT_TIME);
+            Matcher m = r.matcher(DEFAULT_WORK_TIME);
 
             if (m.find()) {
-                txt_counter_text.setText(DEFAULT_TIME);
+                txt_counter_text.setText(DEFAULT_WORK_TIME);
                 timeLeftInMilliseconds = Long.parseLong(m.group(1)) * 60000; //should be on a method
             }
             button_set_time.setOnClickListener(new View.OnClickListener() {
@@ -170,6 +173,9 @@ public class MainActivity extends AppCompatActivity {
             long seconds = TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
             minutesSpentArray.add(minutes);
             secondsSpentArray.add(seconds);
+
+            button_set_time.setVisibility(View.VISIBLE);// has to change into another button that cancel the timer
+            editText_custom_time.setVisibility(View.VISIBLE);
         } else {
             startTimer();
             instantStart = Instant.now();
@@ -180,7 +186,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
-        button_start_work.setText("WORK");
+        if(isABreak) {
+            button_start_work.setText("BREAK");
+        }
+        else {
+            button_start_work.setText("WORK");
+        }
         timerRunning = false;
     }
 
@@ -195,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 vibrator.vibrate(VibrationEffect.createWaveform(vibrationPattern, 0));
+
                 instantEnd = Instant.now();
                 long timeElapsed = Duration.between(instantStart, instantEnd).toMillis();
                 long minutes = TimeUnit.MILLISECONDS.toMinutes(timeElapsed);
@@ -202,6 +214,39 @@ public class MainActivity extends AppCompatActivity {
                 long seconds = TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
                 minutesSpentArray.add(minutes);
                 secondsSpentArray.add(seconds);
+
+
+//                timerRunning = false;
+
+                if(!isABreak){
+                    Matcher m = r.matcher(DEFAULT_BREAK_TIME);
+
+                    if (m.find()) {
+                        txt_counter_text.setText(DEFAULT_BREAK_TIME);
+                        timeLeftInMilliseconds = Long.parseLong(m.group(1)) * 60000;
+                        button_start_work.setText("BREAK");
+                        isABreak = true;
+                        countDownTimer.cancel();
+                        button_start_work.performClick();
+//                        startStop();
+                    }
+
+                }
+                else
+                {
+                    Matcher m = r.matcher(DEFAULT_WORK_TIME);
+
+                    if (m.find()) {
+                        txt_counter_text.setText(DEFAULT_WORK_TIME);
+                        timeLeftInMilliseconds = Long.parseLong(m.group(1)) * 60000;
+                        button_start_work.setText("WORK");
+                        isABreak = false;
+                        countDownTimer.cancel();
+                        button_start_work.performClick();
+//                        startStop();
+                    }
+                }
+
             }
         }.start();
 
@@ -267,7 +312,6 @@ public class MainActivity extends AppCompatActivity {
             totalSecondsTimeSpent += secondsTimeValue;
         }
         String timeSpentToString = String.format("%02d:%02d", totalMinutesTimeSpent, totalSecondsTimeSpent);
-//        String timeSpentToString = String.valueOf(totalMinutesTimeSpent + ":" + totalSecondsTimeSpent);
         myRef.child("sesions").child(currentUser).child(sesionName).child("timeSpend").setValue(timeSpentToString);
     }
 }
