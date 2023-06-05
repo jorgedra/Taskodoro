@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                     custom_time = String.valueOf(editText_custom_time.getText());
                     Matcher m = r.matcher(custom_time); // THIS SHOULD BE ON A METHOD
 
-                    if (m.find()) {
+                    if (m.find() && !custom_time.equalsIgnoreCase("00:00")) {
                         txt_counter_text.setText(custom_time);
                         timeLeftInMilliseconds = Long.parseLong(m.group(1)) * 60000; // with the regex we retrive the group of digits before the (:), this would be the minutes
                         secondsLeftInMilliseconds = Long.parseLong(m.group(2)) * 1000; // with the regex we retrive the group of digits after the (:), this would be the seconds
