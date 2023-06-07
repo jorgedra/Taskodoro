@@ -36,16 +36,25 @@ Here's why you should use Taskodoro:
 
 
 ## Android version used
+- Android version and library: 7.4.2
+- Min SDK version: 27 (Android 8 Oreo)
+- Java version: 1.8 (Java 8)
 
-Here yI should put the specs of android studio and java
+## Device used for testing
 
-### Device used for testing
+- Device Model Name: Samsung Galaxy S10e
+- Device Model Number: SM-G970F/DS
+- Android Version: Android 12 (Snow Cone)
+- Android SDK: 31
+- CPU: Samsung Exynos 9820 (Octa-core, 8 nm)
+- RAM: 6 GB
+- Screen resolution: 2280 x 1080 pixels
+- Screen size: 5.8 inches
 
-Here i should put the specs of my phone
 
-### Download
+## Download
 
-If you wish to download the app from an APK here you have it: [Taskodoro](https://drive.google.com/file/d/16py9IOQa6rmgjTt22tLecD_Z2_bnOpd9/view?usp=sharing)
+If you wish to download the app from an APK here you have it (WARNING: You should give permisions to Drive) : [Taskodoro](https://drive.google.com/file/d/16py9IOQa6rmgjTt22tLecD_Z2_bnOpd9/view?usp=sharing)
 
 <!-- USAGE EXAMPLES -->
 ## Usage
