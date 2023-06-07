@@ -66,6 +66,12 @@ How to use the app:
   - In the session screen you have the timer and the option to customize the timer value, once the timer ends it will change to the break time and vice versa.
   - If you go back to the manu screen and click on the sessions logs button you will see the session you just created and since you finished you can also see the timer you spent on that session.
  
+ ## Images
+ ![imagen](https://github.com/jorgedra/Taskodoro/assets/94982129/00be6f15-e810-43f3-b327-97192357a50f) ![imagen](https://github.com/jorgedra/Taskodoro/assets/94982129/a3327414-bd93-4a8e-89c5-bb4f804b257a)
+ ![imagen](https://github.com/jorgedra/Taskodoro/assets/94982129/186b1227-e633-4119-be41-6d81b9b82df3)
+ ![imagen](https://github.com/jorgedra/Taskodoro/assets/94982129/a0ab153a-72b4-4594-ae0b-fed3fc762854)
+
+
 <!-- CONTACT -->
 ## Contact
 
