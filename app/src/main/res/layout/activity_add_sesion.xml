@@ -15,13 +15,13 @@
         android:layout_marginTop="66dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/alata"
-        android:text="Create sesion"
+        android:text="Create session"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bt_start_sesion"
+        android:id="@+id/bt_start_session"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -29,14 +29,14 @@
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/buttons"
         android:fontFamily="@font/alata"
-        android:text="Start sesion"
+        android:text="Start session"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_task_name" />
 
     <EditText
-        android:id="@+id/edt_sesion_name"
+        android:id="@+id/edt_session_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -44,7 +44,7 @@
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:fontFamily="@font/alata"
-        android:hint="Sesion name"
+        android:hint="Session name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,13 +56,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:fontFamily="@font/alata"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
-        android:text="Sesion tasks"
+        android:fontFamily="@font/alata"
+        android:text="Session tasks"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_sesion_name" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_session_name" />
 
     <EditText
         android:id="@+id/edt_task_name"
@@ -103,7 +103,7 @@
         android:layout_marginTop="50dp"
         android:clickable="false"
         android:foregroundGravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/bt_start_sesion"
+        app:layout_constraintBottom_toTopOf="@+id/bt_start_session"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_task_name" />

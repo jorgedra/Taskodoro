@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -34,7 +33,7 @@ public class MenuActivity extends AppCompatActivity {
     private DatabaseReference myRefUsers;
     private Button bt_log_out;
 
-    private  Button bt_create_sesion;
+    private  Button bt_create_session;
 
     private Button bt_show_log;
 
@@ -49,7 +48,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         bt_log_out = (Button) findViewById(R.id.bt_log_out);
-        bt_create_sesion = (Button) findViewById(R.id.bt_create_sesion);
+        bt_create_session = (Button) findViewById(R.id.bt_create_session);
         bt_show_log = (Button) findViewById(R.id.bt_show_log);
         txt_api_text = (TextView) findViewById(R.id.txt_api_text);
 
@@ -79,7 +78,7 @@ public class MenuActivity extends AppCompatActivity {
                     }
                 });
 
-        bt_create_sesion.setOnClickListener(new View.OnClickListener() {
+        bt_create_session.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this, AddSesionActivity.class);

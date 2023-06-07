@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.os.VibrationEffect;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -29,17 +28,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.LongStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private Vibrator vibrator;
     private TextView txt_counter_text;
 
-    private TextView txt_sesion_title;
+    private TextView txt_session_title;
     private Button button_start_work;
     private Button button_set_time;
 
@@ -95,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String currentUser;
 
-    private String sesionName;
+    private String sessionName;
 
     boolean isABreak = false;
 
@@ -111,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             totalSecondsTimeSpent += secondsTimeValue;
         }
         String timeSpentToString = String.format("%02d:%02d", totalMinutesTimeSpent, totalSecondsTimeSpent);
-        myRef.child("sesions").child(currentUser).child(sesionName).child("timeSpend").setValue(timeSpentToString);
+        myRef.child("sessions").child(currentUser).child(sessionName).child("timeSpend").setValue(timeSpentToString);
     }
 
     @Override
@@ -125,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         button_start_work = (Button) findViewById(R.id.bt_start_work);
         button_set_time = (Button) findViewById(R.id.bt_set_time);
         editText_custom_time = (EditText) findViewById(R.id.edt_custom_time);
-        txt_sesion_title = (TextView) findViewById(R.id.txt_sesion_title);
+        txt_session_title = (TextView) findViewById(R.id.txt_session_title);
         rv_task_list = (RecyclerView) findViewById(R.id.rv_task_list);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         mediaPlayer = MediaPlayer.create(this, R.raw.timer_end_sound);
@@ -135,14 +129,14 @@ public class MainActivity extends AppCompatActivity {
             database = FirebaseDatabase.getInstance();
             myRef = database.getReference();
             currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            sesionName = extras.getString("sesionName");
+            sessionName = extras.getString("sessionName");
 
-            txt_sesion_title.setText(sesionName);
+            txt_session_title.setText(sessionName);
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             rv_task_list.setLayoutManager(layoutManager);
 
-            getTaskFromSesion(sesionName, currentUser);
+            getTaskFromSesion(sessionName, currentUser);
 
             DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rv_task_list.getContext(),
                     ((LinearLayoutManager) layoutManager).getOrientation());
@@ -298,8 +292,8 @@ public class MainActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 
-    private void getTaskFromSesion(String sesionName, String currentUser){
-        myRef.child("sesions").child(currentUser).child(sesionName).child("tasks").addValueEventListener(new ValueEventListener() {
+    private void getTaskFromSesion(String sessionName, String currentUser){
+        myRef.child("sessions").child(currentUser).child(sessionName).child("tasks").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {

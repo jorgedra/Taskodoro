@@ -9,17 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.taskodoro.R;
-import com.example.taskodoro.classes.Sesion;
+import com.example.taskodoro.classes.Session;
 
 import java.util.ArrayList;
 
-public class SesionAdapter extends RecyclerView.Adapter<SesionAdapter.ViewHolder> {
+public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ViewHolder> {
 
     private int resource;
-    private ArrayList<Sesion> sesions;
+    private ArrayList<Session> sessions;
 
-    public SesionAdapter(ArrayList<Sesion> sesions, int resource){
-        this.sesions = sesions;
+    public SessionAdapter(ArrayList<Session> sessions, int resource){
+        this.sessions = sessions;
         this.resource = resource;
     }
 
@@ -33,14 +33,14 @@ public class SesionAdapter extends RecyclerView.Adapter<SesionAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Sesion sesion = sesions.get(position);
-        holder.txt_view_sesion_name.setText(sesion.getSesionName());
-        holder.txt_view_time_spent.setText(String.valueOf(sesion.getTimeSpend()));
+        Session session = sessions.get(position);
+        holder.txt_view_sesion_name.setText(session.getSessionName());
+        holder.txt_view_time_spent.setText(String.valueOf(session.getTimeSpend()));
     }
 
     @Override
     public int getItemCount() {
-        return sesions.size();
+        return sessions.size();
     }
 
     public class  ViewHolder extends RecyclerView.ViewHolder{

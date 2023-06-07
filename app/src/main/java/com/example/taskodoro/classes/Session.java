@@ -1,37 +1,36 @@
 package com.example.taskodoro.classes;
 
-import java.util.List;
 import java.util.Map;
 
-public class Sesion {
+public class Session {
 
-    private String sesionName;
+    private String sessionName;
     private Map<String,Task> tasks;
     private String timeSpend;
 
-    public Sesion(String sesionName, Map<String, Task> tasks, String timeSpend) {
-        this.sesionName = sesionName;
+    public Session(String sessionName, Map<String, Task> tasks, String timeSpend) {
+        this.sessionName = sessionName;
         this.tasks = tasks;
         this.timeSpend = timeSpend;
     }
 
-    public Sesion(String sesionName, Map<String, Task> tasks) {
-        this.sesionName = sesionName;
+    public Session(String sessionName, Map<String, Task> tasks) {
+        this.sessionName = sessionName;
         this.tasks = tasks;
         this.timeSpend = "";
     }
 
-    public Sesion(String sesionName, String timeSpend) {
-        this.sesionName = sesionName;
+    public Session(String sessionName, String timeSpend) {
+        this.sessionName = sessionName;
         this.timeSpend = timeSpend;
     }
 
-    public String getSesionName() {
-        return sesionName;
+    public String getSessionName() {
+        return sessionName;
     }
 
-    public void setSesionName(String sesionName) {
-        this.sesionName = sesionName;
+    public void setSessionName(String sessionName) {
+        this.sessionName = sessionName;
     }
 
     public Map<String, Task> getTasks() {

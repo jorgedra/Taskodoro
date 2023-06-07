@@ -15,7 +15,7 @@
         android:layout_marginStart="43dp"
         android:layout_marginTop="13dp"
         android:layout_marginEnd="9dp"
-        android:layout_toEndOf="@+id/txt_sesion_name_title"
+        android:layout_toEndOf="@+id/txt_session_name_title"
         android:fontFamily="@font/alata"
         android:gravity="center_vertical"
         android:text="SesionName"
@@ -55,7 +55,7 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/txt_sesion_name_title"
+        android:id="@+id/txt_session_name_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -63,7 +63,7 @@
         android:layout_marginStart="13dp"
         android:layout_marginTop="13dp"
         android:fontFamily="@font/alata"
-        android:text="Sesion:"
+        android:text="Session:"
         android:textColor="#000000"
         android:textSize="24sp" />
 

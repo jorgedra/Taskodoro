@@ -86,13 +86,13 @@
         app:layout_constraintVertical_bias="0.818" />
 
     <TextView
-        android:id="@+id/txt_sesion_title"
+        android:id="@+id/txt_session_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/alata"
-        android:text="SesionName"
+        android:text="SessionName"
         android:textColor="@color/text_work"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"

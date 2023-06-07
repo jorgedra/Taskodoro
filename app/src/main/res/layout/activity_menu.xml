@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bt_create_sesion"
+        android:id="@+id/bt_create_session"
         android:layout_width="153dp"
         android:layout_height="66dp"
         android:layout_marginStart="16dp"
@@ -31,7 +31,7 @@
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/buttons"
         android:fontFamily="@font/alata"
-        android:text="Create sesion"
+        android:text="Create session"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_menu" />
@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_create_sesion" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_create_session" />
 
     <Button
         android:id="@+id/bt_log_out"

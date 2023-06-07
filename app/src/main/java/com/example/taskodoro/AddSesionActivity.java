@@ -13,7 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.taskodoro.classes.Sesion;
+import com.example.taskodoro.classes.Session;
 import com.example.taskodoro.classes.Task;
 import com.example.taskodoro.recycler_view.TaskAdapater;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,11 +39,11 @@ public class AddSesionActivity extends AppCompatActivity {
 
     private TaskAdapater taskAdapter;
 
-    private Button bt_start_sesion;
+    private Button bt_start_session;
 
     private EditText edt_task_name;
 
-    private EditText edt_sesion_name;
+    private EditText edt_session_name;
 
     private FloatingActionButton bt_add_task;
 
@@ -61,10 +61,10 @@ public class AddSesionActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_add_sesion);
 
-        bt_start_sesion = (Button) findViewById(R.id.bt_start_sesion);
+        bt_start_session = (Button) findViewById(R.id.bt_start_session);
         bt_add_task = (FloatingActionButton) findViewById(R.id.bt_add_task);
         edt_task_name = (EditText) findViewById(R.id.edt_task_name);
-        edt_sesion_name = (EditText) findViewById(R.id.edt_sesion_name);
+        edt_session_name = (EditText) findViewById(R.id.edt_session_name);
         rv_task = (RecyclerView) findViewById(R.id.rv_task);
 
         rv_task.setLayoutManager(new LinearLayoutManager(this));
@@ -74,18 +74,18 @@ public class AddSesionActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
 
-        List<String> usedNames =  getSesionsName(currentUser);
-        bt_start_sesion.setOnClickListener(new View.OnClickListener() {
+        List<String> usedNames =  getSessionsName(currentUser);
+        bt_start_session.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println(usedNames);
-                String sesionName = String.valueOf(edt_sesion_name.getText());
-                if(TextUtils.isEmpty(sesionName)){
-                    edt_sesion_name.setError("Sesion name can't be empty");
-                } else if (usedNames.contains(sesionName)) {
-                    edt_sesion_name.setError("Sesion name already exists");
+                String sessionName = String.valueOf(edt_session_name.getText());
+                if(TextUtils.isEmpty(sessionName)){
+                    edt_session_name.setError("Session name can't be empty");
+                } else if (usedNames.contains(sessionName)) {
+                    edt_session_name.setError("Session name already exists");
                 } else{
-                    addSesionToDatabse(sesionName);
+                    addSessionToDatabse(sessionName);
                 }
             }
         });
@@ -109,12 +109,12 @@ public class AddSesionActivity extends AppCompatActivity {
     }
 
 
-    private void addSesionToDatabse(String sesionName) {
-        Sesion newSesion = new Sesion(sesionName,taskMap);
-        myRef.child("sesions").child(currentUser).child("Sesion " + newSesion.getSesionName()).setValue(newSesion);
+    private void addSessionToDatabse(String sessionName) {
+        Session newSession = new Session(sessionName,taskMap);
+        myRef.child("sessions").child(currentUser).child("Session " + newSession.getSessionName()).setValue(newSession);
 
         Intent intent = new Intent(AddSesionActivity.this, MainActivity.class);
-        intent.putExtra("sesionName", "Sesion " + newSesion.getSesionName());
+        intent.putExtra("sessionName", "Session " + newSession.getSessionName());
         startActivity(intent);
     }
 
@@ -122,15 +122,15 @@ public class AddSesionActivity extends AppCompatActivity {
         return new Task(taskName,false);
     }
 
-    private List<String> getSesionsName(String currentUser){
-        List<String> sesionsNames = new ArrayList<String>();
-        myRef.child("sesions").child(currentUser).addValueEventListener(new ValueEventListener() {
+    private List<String> getSessionsName(String currentUser){
+        List<String> sessionsNames = new ArrayList<String>();
+        myRef.child("sessions").child(currentUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     for(DataSnapshot ds: snapshot.getChildren()){
-                        String sesionName = ds.child("sesionName").getValue().toString();
-                        sesionsNames.add(sesionName);
+                        String sessionName = ds.child("sessionName").getValue().toString();
+                        sessionsNames.add(sessionName);
                     }
                 }
             }
@@ -140,6 +140,6 @@ public class AddSesionActivity extends AppCompatActivity {
 
             }
         });
-        return sesionsNames;
+        return sessionsNames;
     }
 }

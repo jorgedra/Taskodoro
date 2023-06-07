@@ -8,7 +8,7 @@
     tools:context=".ShowLogActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_sesions"
+        android:id="@+id/rv_sessions"
         android:layout_width="0dp"
         android:layout_height="617dp"
         android:layout_marginTop="84dp"

@@ -6,13 +6,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 import android.view.Window;
 
-import com.example.taskodoro.classes.Sesion;
-import com.example.taskodoro.classes.Task;
-import com.example.taskodoro.recycler_view.SesionAdapter;
+import com.example.taskodoro.classes.Session;
+import com.example.taskodoro.recycler_view.SessionAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,8 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class ShowLogActivity extends AppCompatActivity {
 
@@ -30,13 +26,13 @@ public class ShowLogActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
 
-    private SesionAdapter sesionAdapter;
+    private SessionAdapter sessionAdapter;
 
     private DatabaseReference myRef;
 
-    private RecyclerView rv_sesions = null;
+    private RecyclerView rv_sessions = null;
 
-    private ArrayList<Sesion> sesions = new ArrayList<Sesion>();
+    private ArrayList<Session> sessions = new ArrayList<Session>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,33 +41,33 @@ public class ShowLogActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_show_log);
 
-        rv_sesions = (RecyclerView) findViewById(R.id.rv_sesions);
+        rv_sessions = (RecyclerView) findViewById(R.id.rv_sessions);
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        rv_sesions.setLayoutManager(layoutManager);
+        rv_sessions.setLayoutManager(layoutManager);
         getSesionsFromDatabase(currentUser);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rv_sesions.getContext(),
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rv_sessions.getContext(),
                 ((LinearLayoutManager) layoutManager).getOrientation());
-        rv_sesions.addItemDecoration(dividerItemDecoration);
+        rv_sessions.addItemDecoration(dividerItemDecoration);
     }
 
     private void getSesionsFromDatabase(String currentUser){
-        myRef.child("sesions").child(currentUser).addValueEventListener(new ValueEventListener() {
+        myRef.child("sessions").child(currentUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
-                        String sesionName = ds.child("sesionName").getValue().toString();
+                        String sessionName = ds.child("sessionName").getValue().toString();
                         String timeSpend = ds.child("timeSpend").getValue().toString();
-                        sesions.add(new Sesion(sesionName, timeSpend));
+                        sessions.add(new Session(sessionName, timeSpend));
                     }
-                    sesionAdapter = new SesionAdapter(sesions, R.layout.sesion_view);
-                    rv_sesions.setAdapter(sesionAdapter);
+                    sessionAdapter = new SessionAdapter(sessions, R.layout.sesion_view);
+                    rv_sessions.setAdapter(sessionAdapter);
                 }
             }
 
