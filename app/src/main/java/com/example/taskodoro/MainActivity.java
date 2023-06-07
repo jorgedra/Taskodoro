@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.os.VibrationEffect;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -85,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Instant instantEnd;
 
-    private Long timeSpent;
-
     private String currentUser;
 
     private String sessionName;
@@ -104,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
         for (long secondsTimeValue : secondsSpentArray) {
             totalSecondsTimeSpent += secondsTimeValue;
         }
-        String timeSpentToString = String.format("%02d:%02d", totalMinutesTimeSpent, totalSecondsTimeSpent);
+        long totalMinutesSpent = totalMinutesTimeSpent - totalMinutesTimeSpent/2; //this is because when resetting the timer we perform a click on the button and make the timeSpent duplicate
+        long totalSecondsSpent = totalSecondsTimeSpent - totalSecondsTimeSpent/2;
+        String timeSpentToString = String.format("%02d:%02d", totalMinutesSpent, totalSecondsSpent);
         myRef.child("sessions").child(currentUser).child(sessionName).child("timeSpend").setValue(timeSpentToString);
     }
 

@@ -78,7 +78,6 @@ public class AddSesionActivity extends AppCompatActivity {
         bt_start_session.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(usedNames);
                 String sessionName = String.valueOf(edt_session_name.getText());
                 if(TextUtils.isEmpty(sessionName)){
                     edt_session_name.setError("Session name can't be empty");
