@@ -57,8 +57,6 @@ public class AddSesionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_add_sesion);
 
         bt_start_session = (Button) findViewById(R.id.bt_start_session);
