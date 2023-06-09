@@ -34,8 +34,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button bt_log_in;
 
-
-    // esto nos permite que una vez el usuario se haya logueado no tenga que hacerlo cada vez ya que en onstart comprobara en firebase si el usuario actual esta como logueado
     @Override
     public void onStart() {
         super.onStart();
