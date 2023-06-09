@@ -24,8 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
-
     private EditText edt_email;
 
     private EditText edt_password;
@@ -33,16 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button bt_sign_up;
 
     private Button bt_log_in;
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            currentUser.reload();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
