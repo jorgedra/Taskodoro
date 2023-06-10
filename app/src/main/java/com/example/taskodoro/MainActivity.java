@@ -11,10 +11,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.os.VibrationEffect;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -135,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             rv_task_list.setLayoutManager(layoutManager);
 
-            getTaskFromSesion(sessionName, currentUser);
+            getTasksFromSession(sessionName, currentUser);
 
             DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rv_task_list.getContext(),
                     ((LinearLayoutManager) layoutManager).getOrientation());
@@ -291,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 
-    private void getTaskFromSesion(String sessionName, String currentUser){
+    private void getTasksFromSession(String sessionName, String currentUser){
         myRef.child("sessions").child(currentUser).child(sessionName).child("tasks").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
