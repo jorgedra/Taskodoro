@@ -20,7 +20,7 @@
             android:name=".ShowLogActivity"
             android:exported="false" />
         <activity
-            android:name=".AddSesionActivity"
+            android:name=".AddSessionActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

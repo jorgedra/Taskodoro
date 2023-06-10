@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -29,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AddSesionActivity extends AppCompatActivity {
+public class AddSessionActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
@@ -110,7 +109,7 @@ public class AddSesionActivity extends AppCompatActivity {
         Session newSession = new Session(sessionName,taskMap);
         myRef.child("sessions").child(currentUser).child("Session " + newSession.getSessionName()).setValue(newSession);
 
-        Intent intent = new Intent(AddSesionActivity.this, MainActivity.class);
+        Intent intent = new Intent(AddSessionActivity.this, MainActivity.class);
         intent.putExtra("sessionName", "Session " + newSession.getSessionName());
         startActivity(intent);
     }

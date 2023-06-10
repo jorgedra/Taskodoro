@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,8 +15,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,18 +60,19 @@ public class MenuActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
-                bt_show_log.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(MenuActivity.this, ShowLogActivity.class);
-                        startActivity(intent);
-                    }
-                });
+
+        bt_show_log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, ShowLogActivity.class);
+                startActivity(intent);
+            }
+        });
 
         bt_create_session.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MenuActivity.this, AddSesionActivity.class);
+                Intent intent = new Intent(MenuActivity.this, AddSessionActivity.class);
                 startActivity(intent);
             }
         });
@@ -90,7 +88,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void logOutuser() {
         FirebaseAuth.getInstance().signOut();
-        Toast.makeText(MenuActivity.this, "se cerró la sesión correctamente", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MenuActivity.this, "user signed out", Toast.LENGTH_SHORT).show();
         finish();
     }
 }
