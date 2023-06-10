@@ -30,8 +30,6 @@ import java.util.Map;
 
 public class AddSessionActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-
     private FirebaseDatabase database;
 
     private DatabaseReference myRef;

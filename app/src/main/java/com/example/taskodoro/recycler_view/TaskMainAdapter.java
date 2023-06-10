@@ -21,10 +21,6 @@ public class TaskMainAdapter extends RecyclerView.Adapter<TaskMainAdapter.ViewHo
     private int resource;
     private ArrayList<Task> tasks;
 
-    private DatabaseReference myRef;
-
-    private FirebaseDatabase database;
-
     public TaskMainAdapter(int resource, ArrayList<Task> tasks) {
         this.resource = resource;
         this.tasks = tasks;
@@ -39,8 +35,6 @@ public class TaskMainAdapter extends RecyclerView.Adapter<TaskMainAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
         Task task = tasks.get(position);
         holder.txt_main_task_name.setText(task.getTaskName());
         holder.cb_main_task_status.setChecked(task.getTaskStatus());
