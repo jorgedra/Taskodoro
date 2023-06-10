@@ -26,11 +26,6 @@ public class MenuActivity extends AppCompatActivity {
 
     private final String api_url = "https://api.goprogram.ai/inspiration";
 
-    private FirebaseAuth mAuth;
-
-    private FirebaseDatabase database;
-
-    private DatabaseReference myRefUsers;
     private Button bt_log_out;
 
     private  Button bt_create_session;
